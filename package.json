@@ -25,6 +25,7 @@
     "@payloadcms/richtext-lexical": "3.0.0-beta.43",
     "@payloadcms/richtext-slate": "3.0.0-beta.43",
     "@payloadcms/ui": "3.0.0-beta.43",
+    "@payloadcms/storage-vercel-blob": "3.0.0-beta.43",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.0.0-rc.0",

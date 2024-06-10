@@ -24,6 +24,7 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload/config'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -67,6 +68,14 @@ export default buildConfig({
         },
       ],
     },
+  ],
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        ['media']: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

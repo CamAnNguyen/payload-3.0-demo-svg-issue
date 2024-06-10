@@ -2,8 +2,16 @@ import { Badge } from '@/components/Badge'
 import { Background } from '@/components/Background'
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
 
-const Page = () => {
+const Page = async () => {
+  const payload = await getPayloadHMR({ config: configPromise })
+  const result = await payload.find({ collection: 'media' })
+  const media = (result.docs || [])[0]
+  console.log(media)
+
   return (
     <>
       <main>
@@ -27,6 +35,9 @@ const Page = () => {
           </p>
           <p>You can use the Local API in your server components like this:</p>
         </article>
+
+        {media && <Image src={media.url} alt="testing svg" width={500} height={400} />}
+
         <div className="codeBlock">
           <pre>
             <code>
